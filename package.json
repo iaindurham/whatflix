@@ -4,7 +4,9 @@
   "description": "Movie selector",
   "main": "index.js",
   "scripts": {
-    "test": "npm test"
+    "test": "npm test",
+    "lint": "eslint **/*.js",
+    "lint:fix": "npm run lint -- --fix"
   },
   "repository": {
     "type": "git",
@@ -15,5 +17,12 @@
   "bugs": {
     "url": "https://github.com/iaindurham/whatflix/issues"
   },
-  "homepage": "https://github.com/iaindurham/whatflix#readme"
+  "homepage": "https://github.com/iaindurham/whatflix#readme",
+  "devDependencies": {
+    "eslint": "^6.2.2",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-plugin-import": "^2.18.2",
+    "husky": "^3.0.4",
+    "jest": "^24.9.0"
+  }
 }
