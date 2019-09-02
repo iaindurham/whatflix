@@ -2,20 +2,20 @@ const csv = require('fast-csv')
 const _ = require('lodash')
 const fs = require('fs').promises
 
-const findDirector = (crew) => {
-  const { name = 'Unknown' } = _.find(crew, {job: 'Director'}) || {}
+const findDirector = crew => {
+  const { name = 'Unknown' } = _.find(crew, { job: 'Director' }) || {}
   return name
 }
 
 const languageMap = {
-  'en': 'English',
-  'es': 'Spanish',
-  'de': 'German',
-  'fr': 'French',
-  'ja': 'Japanese'
+  en: 'English',
+  es: 'Spanish',
+  de: 'German',
+  fr: 'French',
+  ja: 'Japanese'
 }
 
-const mapLanguage = (languageCode) => languageMap[languageCode] || languageCode
+const mapLanguage = languageCode => languageMap[languageCode] || languageCode
 
 const parseMoviesFile = () => {
   return new Promise((resolve, reject) => {
@@ -23,10 +23,10 @@ const parseMoviesFile = () => {
 
     csv
       .parseFile('src/config/tmdb_5000_movies.csv', { headers: true })
-      .on('error', (error) => reject(error))
-      .on('data', ({ id, original_title: movie_title, original_language: language }) => {
+      .on('error', error => reject(error))
+      .on('data', ({ id, original_title: movieTitle, original_language: language }) => {
         parsedMovies[id] = {
-          movie_title,
+          movie_title: movieTitle,
           language: mapLanguage(language)
         }
       })
@@ -40,22 +40,17 @@ const parseCreditsFile = () => {
 
     csv
       .parseFile('src/config/tmdb_5000_credits.csv', { headers: true })
-      .on('error', (error) => reject(error))
-      .on('data', ({ movie_id, title, cast, crew }) => {
-
+      .on('error', error => reject(error))
+      .on('data', ({ movie_id: movieId, title, cast, crew }) => {
         const parsedCrew = JSON.parse(crew)
         const director = findDirector(parsedCrew)
 
-        const [ actor_1 = {}, actor_2 = {}, actor_3 = {} ] = JSON.parse(cast)
+        const [actor_1 = {}, actor_2 = {}, actor_3 = {}] = JSON.parse(cast)
 
-        parsedCredits[movie_id] = {
+        parsedCredits[movieId] = {
           movie_title: title,
           director_name: director,
-          actors: [
-            actor_1.name,
-            actor_2.name,
-            actor_3.name
-          ]
+          actors: [actor_1.name, actor_2.name, actor_3.name]
         }
       })
       .on('end', () => resolve(parsedCredits))
@@ -68,7 +63,7 @@ const parseFiles = async () => {
     const movies = await parseMoviesFile()
     const combined = _.merge(credits, movies)
 
-    const mapped = Object.entries(combined).map(([ id, movie ]) => ({
+    const mapped = Object.entries(combined).map(([id, movie]) => ({
       id,
       ...movie
     }))
@@ -79,4 +74,4 @@ const parseFiles = async () => {
   }
 }
 
-return parseFiles()
+parseFiles()

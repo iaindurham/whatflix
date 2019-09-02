@@ -3,11 +3,12 @@
   "version": "1.0.0",
   "description": "Movie recommendation service",
   "scripts": {
+    "build": "node src/config/combineMovieSources",
+    "format": "prettier --write '**/*.js'",
     "test": "jest",
     "test:coverage": "npm test -- --coverage",
     "lint": "eslint **/*.js",
-    "lint:fix": "npm run lint -- --fix",
-    "build": "node src/config/combineMovieSources"
+    "lint:fix": "npm run lint -- --fix"
   },
   "jest": {
     "testEnvironment": "node",
@@ -25,6 +26,13 @@
       "<rootDir>/node_modules/"
     ]
   },
+  "husky": {
+    "hooks": {
+      "pre-push": [
+        "npm run lint && npm run test:coverage"
+      ]
+    }
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/iaindurham/whatflix.git"
@@ -39,8 +47,11 @@
     "csv-parse": "^4.4.5",
     "eslint": "^6.2.2",
     "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-config-prettier": "^6.1.0",
     "eslint-plugin-import": "^2.18.2",
-    "husky": "^3.0.4",
-    "jest": "^24.9.0"
+    "eslint-plugin-prettier": "^3.1.0",
+    "husky": "^3.0.5",
+    "jest": "^24.9.0",
+    "prettier": "^1.18.2"
   }
 }

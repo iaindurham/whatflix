@@ -20,12 +20,7 @@ describe('Utils', () => {
       describe('When mapped names are requested', () => {
         it('should return an array of movie titles', () => {
           const result = utils.mapNames(mockMovies)
-          expect(result).toEqual([
-            'A History of Violence',
-            'Unforgiven',
-            'The Simpsons Movie',
-            'Eternal Sunshine of the Spotless Mind'
-          ])
+          expect(result).toEqual(['A History of Violence', 'Unforgiven', 'The Simpsons Movie', 'Eternal Sunshine of the Spotless Mind'])
         })
       })
     })
@@ -37,11 +32,7 @@ describe('Utils', () => {
       describe('When top 3 are requested', () => {
         it('should return the first 3 items in the array', () => {
           const result = utils.top3(lotsOfThings)
-          expect(result).toEqual([
-            'a',
-            'b',
-            'c'
-          ])
+          expect(result).toEqual(['a', 'b', 'c'])
         })
       })
     })
@@ -51,10 +42,7 @@ describe('Utils', () => {
       describe('When top 3 are requested', () => {
         it('should return all the items in the array', () => {
           const result = utils.top3(lotsOfThings)
-          expect(result).toEqual([
-            'a',
-            'b'
-          ])
+          expect(result).toEqual(['a', 'b'])
         })
       })
     })
@@ -64,10 +52,7 @@ describe('Utils', () => {
       describe('When top 3 are requested', () => {
         it('should return all the items in the array', () => {
           const result = utils.top3(lotsOfThings)
-          expect(result).toEqual([
-            'a',
-            'b'
-          ])
+          expect(result).toEqual(['a', 'b'])
         })
       })
     })

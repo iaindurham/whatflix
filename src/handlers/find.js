@@ -2,9 +2,9 @@ const userPreferencesModel = require('../models/userPreferences')
 const { filterForPreferences, search: searchMovies } = require('../models/movies')
 const { sortAlphabetically, mapNames, top3 } = require('../utils/utils')
 
-const search = (searchString) => {
+const search = searchString => {
   // TODO - get id from URL params
-  const userPreferences =  userPreferencesModel.get('100')
+  const userPreferences = userPreferencesModel.get('100')
 
   if (!userPreferences) {
     // TODO: return 404
@@ -22,8 +22,7 @@ const search = (searchString) => {
   const userTop3 = top3(preferredMovieTitles)
   const searchTop3 = top3(matchingMovieTitles)
 
-  return [ ...userTop3, ...searchTop3 ]
-
+  return [...userTop3, ...searchTop3]
 }
 
 const results = search('Ethan Hawke')
