@@ -1,24 +1,41 @@
 {
   "name": "whatflix",
   "version": "1.0.0",
-  "description": "Movie selector",
-  "main": "index.js",
+  "description": "Movie recommendation service",
   "scripts": {
-    "test": "npm test",
+    "test": "jest",
+    "test:coverage": "npm test -- --coverage",
     "lint": "eslint **/*.js",
     "lint:fix": "npm run lint -- --fix"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "resetMocks": true,
+    "roots": [
+      "<rootDir>/src/",
+      "<rootDir>/tests/"
+    ],
+    "testPathIgnorePatterns": [
+      "<rootDir>/node_modules/",
+      "<rootDir>/coverage/"
+    ],
+    "coveragePathIgnorePatterns": [
+      "<rootDir>/tests/",
+      "<rootDir>/node_modules/"
+    ]
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/iaindurham/whatflix.git"
   },
-  "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/iaindurham/whatflix/issues"
-  },
   "homepage": "https://github.com/iaindurham/whatflix#readme",
+  "dependencies": {
+    "fast-csv": "^3.4.0",
+    "lodash": "^4.17.15"
+  },
   "devDependencies": {
+    "csv-parse": "^4.4.5",
     "eslint": "^6.2.2",
     "eslint-config-airbnb-base": "^14.0.0",
     "eslint-plugin-import": "^2.18.2",
