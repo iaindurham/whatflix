@@ -1,5 +1,10 @@
-.idea/
+# package directories
+node_modules
 
-node_modules/
-coverage/
+# Serverless directories
+.serverless
+
+.idea
+.env
 .DS_Store
+coverage

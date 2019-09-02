@@ -2,10 +2,10 @@ const userPreferencesModel = require('../models/userPreferences')
 const { filterForPreferences } = require('../models/movies')
 const { sortAlphabetically, mapNames, top3 } = require('../utils/utils')
 
-const recommended = () => {
+const recommend = async () => {
   const usersPreferences = userPreferencesModel.list()
 
-  return Object.entries(usersPreferences).map(([id, userPreferences]) => {
+  const recommendations = Object.entries(usersPreferences).map(([id, userPreferences]) => {
     const preferredMovies = filterForPreferences(userPreferences)
     const sortedMovies = sortAlphabetically(preferredMovies)
     const recommendedMovieTitles = mapNames(sortedMovies)
@@ -15,8 +15,13 @@ const recommended = () => {
       movies: top3(recommendedMovieTitles)
     }
   })
+
+  return {
+    statusCode: 200,
+    body: JSON.stringify(recommendations)
+  }
 }
 
-const results = recommended()
-
-console.log(results)
+module.exports = {
+  recommend
+}
