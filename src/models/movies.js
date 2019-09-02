@@ -7,13 +7,14 @@ const filterForActorOrDirector = (movies, actors, directors) =>
     return directors.includes(movie.director_name) || _.intersection(actors, movie.actors).length
   })
 
-const search = (searchStrings = []) => {
-  if (searchStrings.length === 0) {
-    return moviesDB
-  }
+const search = paramSearchTerms => {
+  // Search terms may be null
+  const searchTerms = paramSearchTerms || ''
 
-  const searches = searchStrings.map(searchString => {
-    const compareRegExp = new RegExp(searchString, 'i')
+  const terms = searchTerms.split(',')
+
+  const searches = terms.map(term => {
+    const compareRegExp = new RegExp(term, 'i')
     return _.filter(
       moviesDB,
       movie =>

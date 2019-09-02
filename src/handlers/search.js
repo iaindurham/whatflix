@@ -2,7 +2,10 @@ const userPreferencesModel = require('../models/userPreferences')
 const { filterForPreferences, search: searchMovies } = require('../models/movies')
 const { sortAlphabetically, mapNames, top3 } = require('../utils/utils')
 
-const search = async ({ pathParameters: { userId }, queryStringParameters: { text: searchString } }) => {
+const search = async event => {
+  const {
+    pathParameters: { userId }
+  } = event
   const userPreferences = userPreferencesModel.get(userId)
 
   if (!userPreferences) {
@@ -12,8 +15,8 @@ const search = async ({ pathParameters: { userId }, queryStringParameters: { tex
     }
   }
 
-  const searchStrings = searchString.split(',')
-  const matchingMovies = searchMovies(searchStrings)
+  const searchTerms = event.queryStringParameters && event.queryStringParameters.text
+  const matchingMovies = searchMovies(searchTerms)
 
   const sortedMovies = sortAlphabetically(matchingMovies)
   const preferredMovies = filterForPreferences(userPreferences, sortedMovies)
