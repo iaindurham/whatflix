@@ -6,7 +6,8 @@
     "test": "jest",
     "test:coverage": "npm test -- --coverage",
     "lint": "eslint **/*.js",
-    "lint:fix": "npm run lint -- --fix"
+    "lint:fix": "npm run lint -- --fix",
+    "build": "node src/config/combineMovieSources"
   },
   "jest": {
     "testEnvironment": "node",

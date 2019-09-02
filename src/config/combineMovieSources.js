@@ -73,7 +73,7 @@ const parseFiles = async () => {
       ...movie
     }))
 
-    await fs.writeFile('src/config/output.json', JSON.stringify(mapped, ' ', 2))
+    await fs.writeFile('src/config/movies.json', JSON.stringify(mapped, ' ', 2))
   } catch (err) {
     console.error(err)
   }
