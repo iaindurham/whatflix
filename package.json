@@ -41,7 +41,7 @@
   "homepage": "https://github.com/iaindurham/whatflix#readme",
   "dependencies": {
     "fast-csv": "^3.4.0",
-    "lodash": "^4.17.15"
+    "lodash": "^4.17.19"
   },
   "devDependencies": {
     "csv-parse": "^4.4.5",
