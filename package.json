@@ -40,7 +40,7 @@
   "license": "ISC",
   "homepage": "https://github.com/iaindurham/whatflix#readme",
   "dependencies": {
-    "fast-csv": "^3.4.0",
+    "fast-csv": "^4.3.6",
     "lodash": "^4.17.15"
   },
   "devDependencies": {
